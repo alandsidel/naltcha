@@ -1,3 +1,13 @@
+# NALTCHA
+
+NALTCHA is a fork of ALTCHA @ [altcha-org/altcha](https://github.com/altcha-org/altcha), intended to address deficiencies in that project related to documentation and regressions, and to handle open issues and questions in a more mature fashion.
+
+At present no changes are planned beyond finding and fixing the regression introduced in 2.2.0, [documented here.](https://github.com/altcha-org/altcha/issues/166), though PRs are welcome and encouraged.
+
+As no terribly important changes were made between 2.2.4 and 2.3.0 according to the commmit logs, HEAD was reset to commit 5c5aa3f712731fb4aa8f1491543cf7e614592a46, the release of 2.2.4, and subsequent releases were removed - as was the v3 branch.
+
+The remainder of this document is largely unaltered from the original.  Eventually links to the altcha.org site below will be updated to either direct links to documentation on github, or to wayback machine links, to ensure they stay functional.
+
 # ALTCHA
 
 ALTCHA is a self-hosted, privacy-first security solution that protects your websites, APIs, and online services from spam and abuse through an innovative proof-of-work mechanism. Unlike traditional CAPTCHAs that depend on intrusive methods like cookies or fingerprinting, ALTCHA delivers robust protection while respecting user privacy.
@@ -60,7 +70,7 @@ Explore starter templates for popular frameworks:
 
 ## Plugins & CMS
 
-- [Libraries and plugins](https://altcha.org/docs/integrations/)
+- [Libraries and plugins](https://altcha.org/docs/v2/libraries/)
 
 ## Usage
 
@@ -103,11 +113,11 @@ Or load via `<script>` tag:
 </form>
 ```
 
-See [configuration options](#configuration) or the [website integration docs](https://altcha.org/docs/website-integration).
+See [configuration options](#configuration) or the [website integration docs](https://altcha.org/docs/v2/widget-integration).
 
 ### 3. Integrate with Your Server
 
-Refer to the [server documentation](https://altcha.org/docs/server-integration) for implementation details.
+Refer to the [server documentation](https://altcha.org/docs/v2/server-integration) for implementation details.
 
 ## Supported Browsers
 
@@ -141,7 +151,7 @@ When GZIPped, it totals about 30 kB, making ALTCHA’s widget about 90% smaller 
 
 ## Content Security Policy (CSP)
 
-The default bundle includes styles and workers in a single file. For strict CSP compliance, use scripts from `/dist_external`. Learn more in the [documentation](https://altcha.org/docs/website-integration).
+The default bundle includes styles and workers in a single file. For strict CSP compliance, use scripts from `/dist_external`. Learn more in the [documentation](https://altcha.org/docs/v2/widget-integration).
 
 ## Configuration
 
@@ -154,7 +164,7 @@ Additional options:
 
 - **auto**: Automatically verify without user interaction (possible values: `off`, `onfocus`, `onload`, `onsubmit`).
 - **credentials**: Whether to include [credentials](https://developer.mozilla.org/en-US/docs/Web/API/RequestInit#credentials) with the challenge request (possible values: `omit`, `same-origin`, `include`).
-- **customfetch**: A custom `fetch` function for retrieving the challenge.  
+- **customfetch**: A custom `fetch` function for retrieving the challenge.
   Accepts `url: string` and `init: RequestInit` as arguments and must return a [`Response`](https://developer.mozilla.org/en-US/docs/Web/API/Response).
 - **delay**: Artificial delay in milliseconds before verification (defaults to 0).
 - **disableautofocus**: If true, prevents the code-challenge input from automatically receiving focus on render (defaults to `false`).
@@ -172,14 +182,14 @@ Additional options:
 - **name**: Name of the hidden field containing the payload (defaults to "altcha").
 - **overlay**: Enables overlay UI mode (automatically sets `auto="onsubmit"`).
 - **overlaycontent**: CSS selector of the HTML element to display in the overlay modal before the widget.
-- **strings**: JSON-encoded translation strings. Refer to [customization](https://altcha.org/docs/widget-customization).
+- **strings**: JSON-encoded translation strings. Refer to [customization](https://altcha.org/docs/v2/widget-customization).
 - **verifyurl**: URL for server-side verification requests. This option is automatically configured with Sentinel. Override this setting only if using a custom server implementation. Supports `fn:function_name` format to call a global JS function instead.
 - **workers**: Number of workers to utilize for PoW (defaults to `navigator.hardwareConcurrency || 8`, max value `16`).
 - **workerurl**: URL of the Worker script (defaults to `./worker.js`, only works with `external` build).
 
 Data Obfuscation options:
 
-- **obfuscated**: The [obfuscated data](https://altcha.org/docs/obfuscation) provided as a base64-encoded string (requires `altcha/obfuscation` plugin). Use only without `challengeurl`/`challengejson`.
+- **obfuscated**: The [obfuscated data](https://altcha.org/docs/v2/obfuscation) provided as a base64-encoded string (requires `altcha/obfuscation` plugin). Use only without `challengeurl`/`challengejson`.
 
 Development / Testing options:
 
@@ -319,7 +329,7 @@ export interface Configure {
   name?: string;
   obfuscated?: string;
   overlay?: boolean;
-  refetchonexpire?: boolean; // deprecated, use disablerefetchonexpire 
+  refetchonexpire?: boolean; // deprecated, use disablerefetchonexpire
   spamfilter?: boolean | 'ipAddress' | SpamFilter; // deprecated
   strings?: {
     ariaLinkLabel: strin;
@@ -386,7 +396,7 @@ document.querySelector('#altcha').addEventListener('statechange', (ev) => {
 });
 ```
 
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > Both programmatic configuration and event listeners have to called/attached after the ALTCHA script loads, such as within `window.addEventListener('load', ...)`.
 
 ## Contributing
